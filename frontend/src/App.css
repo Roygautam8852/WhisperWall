@@ -22,6 +22,16 @@
     width: 100%;
 }
 
+/* ── Chat page: full height, no padding ── */
+.main-content-area.chats-mode {
+    padding: 0;
+    max-width: 100%;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
 @media (max-width: 768px) {
     .main-content-area {
         margin-left: 0;

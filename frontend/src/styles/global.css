@@ -19,6 +19,33 @@
   --shadow-sm: 0 4px 6px -1px rgba(139, 92, 246, 0.05);
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+  /* ── Chat page – Light Mode ── */
+  --chat-bg: #efeae2;
+  --chat-sidebar-bg: #ffffff;
+  --chat-panel-bg: #f7f7f7;
+  --chat-border: rgba(0, 0, 0, 0.08);
+  --chat-border-subtle: rgba(0, 0, 0, 0.04);
+  --chat-text-primary: #1e1b4b;
+  --chat-muted: #94a3b8;
+  --chat-hover-bg: #f0f0f0;
+  --chat-active-bg: #ede9fe;
+  --chat-avatar-bg: #e2e8f0;
+  --chat-online: #10b981;
+  --chat-accent: #8b5cf6;
+  --chat-scrollbar: #cbd5e1;
+  --chat-input-bg: #ffffff;
+  --chat-input-border: rgba(139, 92, 246, 0.15);
+  --chat-input-focus: rgba(139, 92, 246, 0.45);
+  --chat-btn-hover: rgba(0, 0, 0, 0.06);
+  --chat-bubble-sent: #8b5cf6;
+  --chat-bubble-sent-text: #ffffff;
+  --chat-bubble-sent-shadow: 0 2px 8px rgba(139, 92, 246, 0.25);
+  --chat-bubble-received: #ffffff;
+  --chat-bubble-text: #1e1b4b;
+  --chat-bubble-time: rgba(0, 0, 0, 0.35);
+  --chat-bubble-received-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --chat-send-btn-shadow: 0 2px 12px rgba(139, 92, 246, 0.4);
 }
 
 [data-theme='dark'] {
@@ -33,6 +60,33 @@
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+
+  /* ── Chat page – Dark Mode (matches project obsidian + purple theme) ── */
+  --chat-bg: #0b0f1a;
+  --chat-sidebar-bg: #0f172a;
+  --chat-panel-bg: #1e293b;
+  --chat-border: rgba(255, 255, 255, 0.08);
+  --chat-border-subtle: rgba(255, 255, 255, 0.04);
+  --chat-text-primary: #f8fafc;
+  --chat-muted: #94a3b8;
+  --chat-hover-bg: rgba(139, 92, 246, 0.07);
+  --chat-active-bg: rgba(139, 92, 246, 0.18);
+  --chat-avatar-bg: #1e293b;
+  --chat-online: #10b981;
+  --chat-accent: #8b5cf6;
+  --chat-scrollbar: rgba(139, 92, 246, 0.2);
+  --chat-input-bg: rgba(15, 23, 42, 0.8);
+  --chat-input-border: rgba(139, 92, 246, 0.2);
+  --chat-input-focus: rgba(139, 92, 246, 0.5);
+  --chat-btn-hover: rgba(255, 255, 255, 0.07);
+  --chat-bubble-sent: #7c3aed;
+  --chat-bubble-sent-text: #ffffff;
+  --chat-bubble-sent-shadow: 0 0 16px rgba(139, 92, 246, 0.35);
+  --chat-bubble-received: #1e293b;
+  --chat-bubble-text: #e2e8f0;
+  --chat-bubble-time: rgba(255, 255, 255, 0.38);
+  --chat-bubble-received-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --chat-send-btn-shadow: 0 0 16px rgba(139, 92, 246, 0.55);
 }
 
 body {

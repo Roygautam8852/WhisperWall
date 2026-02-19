@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Feed from './pages/Feed';
 import ProfilePage from './pages/ProfilePage';
 import TrendsPage from './pages/TrendsPage';
+import ChatsPage from './pages/ChatsPage';
 import CreateModal from './components/CreateModal';
 import LandingPage from './pages/LandingPage';
 import { confessionService } from './services/api';
@@ -77,7 +78,7 @@ const App = () => {
     }
   };
 
-  const categories = ['All', 'Study', 'Crush', 'Funny', 'Rant'];
+  const categories = ['All', 'General', 'Study', 'Crush', 'Funny', 'Rant'];
 
   const renderContent = () => {
     switch (activeTab) {
@@ -97,6 +98,7 @@ const App = () => {
         );
       case 'profile': return <ProfilePage />;
       case 'trends': return <TrendsPage />;
+      case 'chats': return <ChatsPage />;
       default: return null;
     }
   };
@@ -117,7 +119,7 @@ const App = () => {
           onCreateClick={() => setIsModalOpen(true)}
         />
 
-        <main className="main-content-area">
+        <main className={`main-content-area ${activeTab === 'chats' ? 'chats-mode' : ''}`}>
           {renderContent()}
         </main>
       </div>

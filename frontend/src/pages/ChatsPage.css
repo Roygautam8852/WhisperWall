@@ -1,0 +1,36 @@
+/* Full-page chat layout */
+.chats-page {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    background: var(--chat-bg);
+}
+
+/* Empty placeholder when no contact is selected */
+.chats-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--chat-muted);
+    background: var(--chat-bg);
+}
+
+.chats-empty-icon {
+    font-size: 3.5rem;
+}
+
+.chats-empty h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--chat-text-primary);
+    margin: 0;
+}
+
+.chats-empty p {
+    font-size: 0.88rem;
+    margin: 0;
+    color: var(--chat-muted);
+}

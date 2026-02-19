@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Home, User, BarChart2, Plus, LogOut, Settings } from 'lucide-react';
+import { Home, User, BarChart2, Plus, LogOut, Settings, MessageCircle } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import './Sidebar.css';
 
@@ -38,6 +38,14 @@ const Sidebar = ({ activeTab, onTabChange, onCreateClick }) => {
                     >
                         <BarChart2 size={20} />
                         <span>Trends</span>
+                    </button>
+
+                    <button
+                        className={`nav-item ${activeTab === 'chats' ? 'active' : ''}`}
+                        onClick={() => onTabChange('chats')}
+                    >
+                        <MessageCircle size={20} />
+                        <span>Chats</span>
                     </button>
 
                     <div className="divider"></div>

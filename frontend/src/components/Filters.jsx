@@ -3,7 +3,7 @@ import { ChevronDown, Check } from 'lucide-react';
 import './Filters.css';
 
 const Filters = ({ selectedCategory, selectedSort, onCategoryChange, onSortChange }) => {
-  const categories = ['All', 'General', 'Crush', 'Study', 'Funny', 'Rant'];
+  const categories = ['All', 'General', 'Study', 'Crush', 'Funny', 'Rant'];
   const sortOptions = [
     { value: 'newest', label: 'Newest' },
     { value: 'trending', label: 'Trending' },
