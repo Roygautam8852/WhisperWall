@@ -14,19 +14,28 @@
    NAVBAR
    ============================================================ */
 .landing-nav {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 200;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2.5rem;
+    height: 72px;
+    background: transparent;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.landing-nav-scrolled {
     height: 64px;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-    box-shadow: 0 2px 16px rgba(139, 92, 246, 0.06);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
 }
 
 .landing-nav-brand {

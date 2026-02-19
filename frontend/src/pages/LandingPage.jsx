@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles, Shield, Users, TrendingUp, MessageCircle, Lock } from 'lucide-react';
 import { authService } from '../services/api';
 import LoginSignup from '../components/LoginSignup';
@@ -23,6 +23,16 @@ const handleGoogleLogin = () => {
 const LandingPage = () => {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [loginMode, setLoginMode] = useState('login');
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    // Add scroll listener for sticky nav effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const openLogin = () => {
         setLoginMode('login');
@@ -44,7 +54,7 @@ const LandingPage = () => {
         <div className="landing-root">
 
             {/* ── Navbar ── */}
-            <header className="landing-nav">
+            <header className={`landing-nav ${isScrolled ? 'landing-nav-scrolled' : ''}`}>
                 <div className="landing-nav-brand">
                     <div className="landing-brand-icon"><Sparkles size={18} /></div>
                     <span>WhisperWall</span>
