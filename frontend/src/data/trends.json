@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Exam Stress",
+        "count": 420,
+        "category": "Study"
+    },
+    {
+        "id": 2,
+        "title": "Campus Food",
+        "count": 150,
+        "category": "Rant"
+    },
+    {
+        "id": 3,
+        "title": "Library Crushes",
+        "count": 89,
+        "category": "Crush"
+    }
+]

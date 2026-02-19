@@ -1,0 +1,150 @@
+.confession-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.confession-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.meta-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.category-badge {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 99px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-study {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.category-crush {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.category-funny {
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.category-rant {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.card-body p {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.hashtags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.hashtag {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.hashtag:hover {
+  text-decoration: underline;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.action-btn:hover {
+  color: var(--primary);
+}
+
+.action-btn.liked {
+  color: #ef4444;
+}
+
+.action-btn.liked svg {
+  fill: #ef4444;
+}
+
+.share-btn {
+  color: var(--text-light);
+}
+
+.share-btn:hover {
+  color: var(--text-dark);
+}

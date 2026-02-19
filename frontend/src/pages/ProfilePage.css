@@ -1,0 +1,128 @@
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.profile-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4f46e5, #ec4899);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.profile-info h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #4f46e5;
+}
+
+.label {
+    font-size: 0.875rem;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.tabs-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: #1e293b;
+    color: white;
+    border-color: #1e293b;
+}
+
+.post-item {
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #e2e8f0;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+}
+
+.status.active {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.post-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.post-actions button {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.text-danger {
+    color: #ef4444;
+}
+
+.btn-resume {
+    background: #4f46e5;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
