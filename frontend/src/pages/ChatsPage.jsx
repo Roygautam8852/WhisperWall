@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatSidebar from '../components/ChatSidebar';
 import ChatWindow from '../components/ChatWindow';
 import { dummyContacts } from '../data/dummyContacts';
@@ -7,6 +7,16 @@ import './ChatsPage.css';
 const ChatsPage = () => {
     const [contacts, setContacts] = useState(dummyContacts);
     const [selectedContact, setSelectedContact] = useState(dummyContacts[0]);
+
+    // ── Manage scrollbar visibility ──────────────────────────
+    useEffect(() => {
+        document.body.classList.add('hide-scrollbar');
+        document.documentElement.classList.add('hide-scrollbar');
+        return () => {
+            document.body.classList.remove('hide-scrollbar');
+            document.documentElement.classList.remove('hide-scrollbar');
+        };
+    }, []);
 
     const handleSelectContact = (contact) => {
         // Merge any updated messages from state back into selection

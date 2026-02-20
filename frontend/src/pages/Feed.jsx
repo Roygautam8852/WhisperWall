@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConfessionCard from '../components/ConfessionCard';
 import {
     ChevronDown,
@@ -17,6 +17,16 @@ import './Feed.css';
 const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChange, onSortChange, sortOption, searchQuery = '' }) => {
     const [isSortOpen, setIsSortOpen] = useState(false);
     const q = searchQuery.trim();
+
+    // ── Manage scrollbar visibility ──────────────────────────
+    useEffect(() => {
+        document.body.classList.add('hide-scrollbar');
+        document.documentElement.classList.add('hide-scrollbar');
+        return () => {
+            document.body.classList.remove('hide-scrollbar');
+            document.documentElement.classList.remove('hide-scrollbar');
+        };
+    }, []);
 
     const getCategoryIcon = (category, isActive) => {
         if (isActive) {
@@ -48,11 +58,9 @@ const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChan
             if (!q) return true;
 
             const query = q.toLowerCase();
-            // Search in text or hashtags
-            const textMatch = (c.text || '').toLowerCase().includes(query);
-            const tagMatch = (c.hashtags || []).some(tag => tag.toLowerCase().includes(query));
-
-            return textMatch || tagMatch;
+            // Search specifically for categories starting with the query
+            const category = (c.category || '').toLowerCase();
+            return category.startsWith(query);
         })
         .sort((a, b) => {
             const timeA = new Date(a.createdAt || a.timestamp);

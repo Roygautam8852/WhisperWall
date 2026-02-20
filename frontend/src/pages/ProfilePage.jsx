@@ -32,6 +32,16 @@ const ProfilePage = (props) => {
     const [inputSecretCode, setInputSecretCode] = useState('');
     const [deleting, setDeleting] = useState(false);
 
+    // ── Manage scrollbar visibility ──────────────────────────
+    useEffect(() => {
+        document.body.classList.add('hide-scrollbar');
+        document.documentElement.classList.add('hide-scrollbar');
+        return () => {
+            document.body.classList.remove('hide-scrollbar');
+            document.documentElement.classList.remove('hide-scrollbar');
+        };
+    }, []);
+
     // ── Fetch user's confessions ─────────────────────────────
     useEffect(() => {
         const fetch = async () => {

@@ -31,9 +31,8 @@
 
 /* ── Inner layout ── */
 .navbar-inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  /* brand | search | actions */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
   padding: 0 1.5rem;
@@ -89,8 +88,9 @@
 .navbar-search {
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* center search bar in its grid column */
+  justify-content: flex-end;
+  flex: 1;
+  margin-right: 10rem;
 }
 
 .search-wrapper {

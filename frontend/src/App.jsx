@@ -110,6 +110,7 @@ const App = () => {
         onConfessClick={() => setIsModalOpen(true)}
         searchQuery={searchQuery}
         onSearch={setSearchQuery}
+        activeTab={activeTab}
       />
 
       <div className="app-body">

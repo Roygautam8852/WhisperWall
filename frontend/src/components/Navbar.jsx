@@ -8,7 +8,7 @@ import {
 import LoginSignup from './LoginSignup';
 import './Navbar.css';
 
-const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
+const Navbar = ({ onConfessClick, searchQuery = '', onSearch, activeTab }) => {
   const { user, logout } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
 
@@ -83,22 +83,24 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
           </div>
 
           {/* ── Search Bar ── */}
-          <div className="navbar-search">
-            <div className="search-wrapper">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search secrets, hashtags…"
-                value={searchQuery}
-                onChange={(e) => onSearch && onSearch(e.target.value)}
-              />
-              {searchQuery && (
-                <button className="search-clear" onClick={() => onSearch && onSearch('')}>
-                  <X size={15} />
-                </button>
-              )}
+          {activeTab === 'feed' && (
+            <div className="navbar-search">
+              <div className="search-wrapper">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search secrets, hashtags…"
+                  value={searchQuery}
+                  onChange={(e) => onSearch && onSearch(e.target.value)}
+                />
+                {searchQuery && (
+                  <button className="search-clear" onClick={() => onSearch && onSearch('')}>
+                    <X size={15} />
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* ── Right Controls ── */}
           <div className="navbar-actions">
