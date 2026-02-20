@@ -16,7 +16,10 @@ router.post('/logout', authController.logout);
 // Google OAuth routes (for future integration)
 router.get(
   '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    prompt: 'select_account'
+  })
 );
 
 router.get(
