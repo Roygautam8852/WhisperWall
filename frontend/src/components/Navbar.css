@@ -160,7 +160,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 1.8rem;
   flex-shrink: 0;
 }
 
