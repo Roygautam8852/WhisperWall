@@ -62,7 +62,22 @@ const Sidebar = ({ activeTab, onTabChange, onCreateClick }) => {
                         <div className="user-card">
                             <div className="user-avatar-container">
                                 {user.avatar ? (
-                                    <img src={user.avatar} alt={user.displayName} className="user-card-avatar" />
+                                    <>
+                                        <img
+                                            src={user.avatar}
+                                            alt={user.displayName}
+                                            className="user-card-avatar"
+                                            referrerPolicy="no-referrer"
+                                            onError={(e) => {
+                                                e.target.style.display = 'none';
+                                                const fallback = e.target.nextElementSibling;
+                                                if (fallback) fallback.style.display = 'flex';
+                                            }}
+                                        />
+                                        <div className="user-card-initials" style={{ display: 'none' }}>
+                                            {user.displayName?.charAt(0)?.toUpperCase() || 'U'}
+                                        </div>
+                                    </>
                                 ) : (
                                     <div className="user-card-initials">
                                         {user.displayName?.charAt(0)?.toUpperCase() || 'U'}

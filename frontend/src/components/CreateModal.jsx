@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Sparkles, ShieldCheck, Hash, Lock, ChevronDown } from 'lucide-react';
 import './CreateModal.css';
 
-const Modal = ({ isOpen, onClose, onPost }) => {
+const Modal = ({ isOpen, onClose, onPost, editingData = null }) => {
     if (!isOpen) return null;
 
-    const [content, setContent] = useState('');
-    const [category, setCategory] = useState('General');
+    const [content, setContent] = useState(editingData ? (editingData.text || editingData.content || '') : '');
+    const [category, setCategory] = useState(editingData ? editingData.category : 'General');
     const [secretCode, setSecretCode] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isVibeOpen, setIsVibeOpen] = useState(false);
+
+    // Sync state if editingData changes while open (though App.jsx handles closure)
+    useEffect(() => {
+        if (editingData) {
+            setContent(editingData.text || editingData.content || '');
+            setCategory(editingData.category || 'General');
+            setSecretCode(''); // Secret code is never returned from backend, must re-enter to verify
+        } else {
+            setContent('');
+            setCategory('General');
+            setSecretCode('');
+        }
+    }, [editingData, isOpen]);
 
     const vibes = [
         { id: 'General', label: 'General', icon: '💬' },
@@ -21,6 +34,8 @@ const Modal = ({ isOpen, onClose, onPost }) => {
     ];
 
     const currentVibe = vibes.find(v => v.id === category) || vibes[0];
+
+    const isEditMode = !!editingData;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -74,8 +89,8 @@ const Modal = ({ isOpen, onClose, onPost }) => {
                             <Sparkles size={20} className="modal-icon" />
                         </div>
                         <div>
-                            <h2>Whisper Your Secret</h2>
-                            <p>Anonymously share what's on your mind.</p>
+                            <h2>{isEditMode ? 'Refine Your Secret' : 'Whisper Your Secret'}</h2>
+                            <p>{isEditMode ? 'Make your confession even better.' : 'Anonymously share what\'s on your mind.'}</p>
                         </div>
                     </div>
                     <button className="modal-close-btn" onClick={onClose}>
@@ -193,7 +208,7 @@ const Modal = ({ isOpen, onClose, onPost }) => {
                         className="modal-submit-btn"
                         disabled={isSubmitting || content.trim().length < 10 || secretCode.trim().length < 4}
                     >
-                        {isSubmitting ? 'Publishing...' : 'Post Anonymously'}
+                        {isSubmitting ? (isEditMode ? 'Updating...' : 'Publishing...') : (isEditMode ? 'Save Changes' : 'Post Anonymously')}
                     </button>
                 </form>
             </div>

@@ -38,12 +38,33 @@ const ConfessionCard = ({ data, onReact }) => {
 
   const timeString = timestamp ? new Date(timestamp).toLocaleDateString() + ' • ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now';
 
+  const authorInitial = authorName.charAt(0).toUpperCase();
+
   return (
     <div className="confession-card">
       <div className="card-header">
         <div className="user-info">
           <div className="avatar-circle">
-            <img src={authorAvatar} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: '50%' }} />
+            {authorAvatar ? (
+              <>
+                <img
+                  src={authorAvatar}
+                  alt=""
+                  className="card-avatar-img"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    const fallback = e.target.nextElementSibling;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div className="avatar-initials" style={{ display: 'none' }}>
+                  {authorInitial}
+                </div>
+              </>
+            ) : (
+              <div className="avatar-initials">{authorInitial}</div>
+            )}
           </div>
           <div className="meta-info">
             <h4>{authorName}</h4>

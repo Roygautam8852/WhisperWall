@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Heart, MessageCircle, Trash2, Clock, BookOpen, Sparkles, AlertTriangle } from 'lucide-react';
+import { Heart, MessageCircle, Trash2, Clock, BookOpen, Sparkles, AlertTriangle, Pencil } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { confessionService } from '../services/api';
 import './ProfilePage.css';
@@ -22,7 +22,7 @@ const formatDate = (iso) => {
     return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 };
 
-const ProfilePage = (props) => {
+const ProfilePage = ({ onRefresh, onEdit }) => {
     const { user } = useContext(AuthContext);
 
     const [confessions, setConfessions] = useState([]);
@@ -103,7 +103,22 @@ const ProfilePage = (props) => {
                 <div className="ph-hero-bg" />
                 <div className="ph-hero-content">
                     {user?.avatar ? (
-                        <img src={user.avatar} alt="avatar" className="ph-avatar-img" />
+                        <>
+                            <img
+                                src={user.avatar}
+                                alt="avatar"
+                                className="ph-avatar-img"
+                                referrerPolicy="no-referrer"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    const fallback = e.target.nextElementSibling;
+                                    if (fallback) fallback.style.display = 'flex';
+                                }}
+                            />
+                            <div className="ph-avatar-circle" style={{ display: 'none' }}>
+                                {avatarLetter}
+                            </div>
+                        </>
                     ) : (
                         <div className="ph-avatar-circle">{avatarLetter}</div>
                     )}
@@ -201,49 +216,60 @@ const ProfilePage = (props) => {
                                         </span>
                                     </div>
 
-                                    {/* Delete */}
-                                    {deleteId === c._id ? (
-                                        <div className="ph-confirm-row vertical">
-                                            <div className="ph-code-input-group">
-                                                <input
-                                                    type="password"
-                                                    placeholder="Enter Secret Code"
-                                                    className="ph-code-input"
-                                                    value={inputSecretCode}
-                                                    onChange={(e) => setInputSecretCode(e.target.value)}
-                                                    maxLength={8}
-                                                />
-                                            </div>
-                                            <div className="ph-confirm-actions">
-                                                <button
-                                                    className="ph-btn-danger"
-                                                    onClick={() => handleDelete(c._id)}
-                                                    disabled={deleting}
-                                                >
-                                                    {deleting ? 'Deleting…' : 'Confirm Delete'}
-                                                </button>
-                                                <button
-                                                    className="ph-btn-cancel"
-                                                    onClick={() => {
-                                                        setDeleteId(null);
-                                                        setInputSecretCode('');
-                                                    }}
-                                                    disabled={deleting}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ) : (
+                                    {/* Actions */}
+                                    <div className="ph-card-actions">
                                         <button
-                                            className="ph-delete-btn"
-                                            onClick={() => setDeleteId(c._id)}
-                                            title="Delete this confession"
+                                            className="ph-edit-btn"
+                                            onClick={() => onEdit && onEdit(c)}
+                                            title="Edit this confession"
                                         >
-                                            <Trash2 size={15} />
-                                            Delete
+                                            <Pencil size={15} />
+                                            Edit
                                         </button>
-                                    )}
+
+                                        {deleteId === c._id ? (
+                                            <div className="ph-confirm-row vertical">
+                                                <div className="ph-code-input-group">
+                                                    <input
+                                                        type="password"
+                                                        placeholder="Enter Secret Code"
+                                                        className="ph-code-input"
+                                                        value={inputSecretCode}
+                                                        onChange={(e) => setInputSecretCode(e.target.value)}
+                                                        maxLength={8}
+                                                    />
+                                                </div>
+                                                <div className="ph-confirm-actions">
+                                                    <button
+                                                        className="ph-btn-danger"
+                                                        onClick={() => handleDelete(c._id)}
+                                                        disabled={deleting}
+                                                    >
+                                                        {deleting ? 'Deleting…' : 'Confirm Delete'}
+                                                    </button>
+                                                    <button
+                                                        className="ph-btn-cancel"
+                                                        onClick={() => {
+                                                            setDeleteId(null);
+                                                            setInputSecretCode('');
+                                                        }}
+                                                        disabled={deleting}
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <button
+                                                className="ph-delete-btn"
+                                                onClick={() => setDeleteId(c._id)}
+                                                title="Delete this confession"
+                                            >
+                                                <Trash2 size={15} />
+                                                Delete
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         );

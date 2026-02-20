@@ -143,6 +143,9 @@ exports.googleCallback = async (profile, done) => {
     // 1. Try to find existing user by Google ID (returning user)
     let user = await User.findOne({ googleId: profile.id });
     if (user) {
+      // Sync Google avatar on returning visits
+      user.avatar = profile.photos[0]?.value || user.avatar;
+      await user.save();
       return done(null, user);
     }
 

@@ -20,6 +20,7 @@ const App = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
+  const [editingConfession, setEditingConfession] = useState(null);
 
   // ── Fetch confessions from API ──────────────────────────────
   useEffect(() => {
@@ -53,17 +54,32 @@ const App = () => {
 
   const handlePost = async (newConfession) => {
     try {
-      await confessionService.create({
-        text: newConfession.content,
-        category: newConfession.category,
-        hashtags: newConfession.hashtags,
-        secretCode: newConfession.secretCode
-      });
+      if (editingConfession) {
+        // Update existing
+        await confessionService.update(editingConfession._id, {
+          text: newConfession.content,
+          category: newConfession.category,
+          hashtags: newConfession.hashtags,
+          secretCode: newConfession.secretCode, // The code to set (new or same)
+          currentSecretCode: newConfession.secretCode // The code for verification
+        });
+      } else {
+        // Create new
+        await confessionService.create({
+          text: newConfession.content,
+          category: newConfession.category,
+          hashtags: newConfession.hashtags,
+          secretCode: newConfession.secretCode
+        });
+      }
+
       // Trigger refresh
       setRefreshKey(prev => prev + 1);
       setIsModalOpen(false);
+      setEditingConfession(null);
     } catch (err) {
-      console.error("Failed to post confession:", err);
+      console.error("Failed to post/update confession:", err);
+      throw err; // Re-throw to show in Modal error state
     }
   };
 
@@ -93,7 +109,16 @@ const App = () => {
             searchQuery={searchQuery}
           />
         );
-      case 'profile': return <ProfilePage onRefresh={() => setRefreshKey(prev => prev + 1)} />;
+      case 'profile':
+        return (
+          <ProfilePage
+            onRefresh={() => setRefreshKey(prev => prev + 1)}
+            onEdit={(confession) => {
+              setEditingConfession(confession);
+              setIsModalOpen(true);
+            }}
+          />
+        );
       case 'trends': return <TrendsPage />;
       case 'chats': return <ChatsPage />;
       default: return null;
@@ -124,7 +149,11 @@ const App = () => {
 
       <CreateModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        editingData={editingConfession}
+        onClose={() => {
+          setIsModalOpen(false);
+          setEditingConfession(null);
+        }}
         onPost={handlePost}
       />
     </div>

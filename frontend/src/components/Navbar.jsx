@@ -154,6 +154,7 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch, activeTab }) => {
                       src={user.avatar}
                       alt=""
                       className="avatar-img"
+                      referrerPolicy="no-referrer"
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.nextSibling && (e.target.nextSibling.style.display = 'flex');

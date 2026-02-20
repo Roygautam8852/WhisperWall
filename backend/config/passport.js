@@ -16,6 +16,9 @@ passport.use(
         // 1. Returning Google user — find by googleId
         let user = await User.findOne({ googleId: profile.id });
         if (user) {
+          // Always update avatar to latest from Google
+          user.avatar = profile.photos[0]?.value || user.avatar;
+          await user.save();
           return done(null, user);
         }
 
