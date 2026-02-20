@@ -38,11 +38,12 @@ app.use(
     secret: process.env.SESSION_SECRET || 'your_session_secret',
     resave: false,
     saveUninitialized: false,
+    proxy: true, // Required for Render/Trust Proxy
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true, // Must be true for sameSite: 'none'
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      sameSite: 'lax',
+      sameSite: 'none', // Required for cross-domain cookies
     },
   })
 );
