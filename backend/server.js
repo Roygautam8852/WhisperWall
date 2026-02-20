@@ -17,6 +17,9 @@ const { generalLimiter } = require('./middleware/rateLimiter');
 // Initialize express app
 const app = express();
 
+// Trust proxy for Render/Cloud environments
+app.set('trust proxy', 1);
+
 // Connect to MongoDB
 connectDB();
 
