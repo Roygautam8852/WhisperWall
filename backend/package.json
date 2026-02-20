@@ -1,5 +1,5 @@
 {
-  "name": "whisperwall-backend",
+  "name": "secretdiary-backend",
   "version": "1.0.0",
   "description": "Anonymous Confession Platform Backend",
   "main": "server.js",
@@ -8,7 +8,11 @@
     "dev": "nodemon server.js",
     "seed": "node scripts/seed.js"
   },
-  "keywords": ["confession", "anonymous", "mern"],
+  "keywords": [
+    "confession",
+    "anonymous",
+    "mern"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {

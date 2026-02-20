@@ -129,7 +129,7 @@ const HomePage = () => {
                 <div className="icon-circle">
                   <Shield size={24} />
                 </div>
-                <h3>Join WhisperWall</h3>
+                <h3>Join SecretDiary</h3>
                 <p>Share your secrets anonymously and connect with peers.</p>
               </div>
             )}

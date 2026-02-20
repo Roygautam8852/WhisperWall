@@ -61,7 +61,7 @@ const LoginSignup = ({ isOpen, onClose, initialMode = 'login' }) => {
     try {
       if (isSignup) {
         await signup(formData.email, formData.password, formData.name.trim());
-        setSuccess('Account created! Welcome to WhisperWall 🎉');
+        setSuccess('Account created! Welcome to SecretDiary 🎉');
         setTimeout(onClose, 1200);
       } else {
         await login(formData.email, formData.password);
@@ -96,7 +96,7 @@ const LoginSignup = ({ isOpen, onClose, initialMode = 'login' }) => {
             <div className="ls-logo">
               <Sparkles size={28} />
             </div>
-            <h2>WhisperWall</h2>
+            <h2>SecretDiary</h2>
             <p>Share your secrets anonymously with your campus community.</p>
 
             <div className="ls-features">

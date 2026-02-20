@@ -79,7 +79,7 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
             <div className="brand-icon">
               <Mail size={20} />
             </div>
-            <span className="brand-name">WhisperWall</span>
+            <span className="brand-name">SecretDiary</span>
           </div>
 
           {/* ── Search Bar ── */}

@@ -57,7 +57,7 @@ const LandingPage = () => {
             <header className={`landing-nav ${isScrolled ? 'landing-nav-scrolled' : ''}`}>
                 <div className="landing-nav-brand">
                     <div className="landing-brand-icon"><Sparkles size={18} /></div>
-                    <span>WhisperWall</span>
+                    <span>SecretDiary</span>
                 </div>
                 {/* Single sign-in in the navbar */}
                 <button className="land-btn btn-sm" onClick={handleGoogleLogin}>
@@ -93,7 +93,7 @@ const LandingPage = () => {
                     <div className="hero-ctas">
                         <button className="land-btn btn-lg" onClick={handleGoogleLogin}>
                             <GoogleIcon />
-                            <span>Join WhisperWall</span>
+                            <span>Join SecretDiary</span>
                         </button>
                         <p className="hero-cta-note">
                             🔒 Safe, secure, and 100% anonymous.
@@ -146,7 +146,7 @@ const LandingPage = () => {
 
             {/* ── Features ── */}
             <section className="landing-features">
-                <h2 className="features-title">Why WhisperWall?</h2>
+                <h2 className="features-title">Why SecretDiary?</h2>
                 <p className="features-subtitle">Everything you need to share freely and safely.</p>
                 <div className="features-grid">
                     {features.map((f, i) => (
@@ -172,7 +172,7 @@ const LandingPage = () => {
 
             {/* ── Footer ── */}
             <footer className="landing-footer">
-                <span>© 2024 WhisperWall · Anonymous Campus Confessions</span>
+                <span>© 2024 SecretDiary · Anonymous Campus Confessions</span>
             </footer>
             {/* Login/Signup Modal */}
             <LoginSignup

@@ -7,16 +7,16 @@ const Confession = require('../models/Confession');
 
 const seedDatabase = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/whisperwall');
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/secretdiary');
     console.log('✅ Connected to MongoDB');
 
     // Drop collections to start fresh
     try {
       await mongoose.connection.collection('users').drop();
-    } catch (e) {}
+    } catch (e) { }
     try {
       await mongoose.connection.collection('confessions').drop();
-    } catch (e) {}
+    } catch (e) { }
     console.log('🗑️  Cleared existing collections');
 
     // Create sample users

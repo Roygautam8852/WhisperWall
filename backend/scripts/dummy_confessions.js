@@ -33,7 +33,7 @@ const hashtags = [
 
 const seedDummy = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/whisperwall');
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/secretdiary');
         console.log('✅ Connected to MongoDB');
 
         const users = await User.find({});

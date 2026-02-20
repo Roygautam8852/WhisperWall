@@ -1,11 +1,46 @@
 import React, { useState } from 'react';
 import ConfessionCard from '../components/ConfessionCard';
-import { ChevronDown, Clock, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
+import {
+    ChevronDown,
+    Clock,
+    ArrowUpCircle,
+    ArrowDownCircle,
+    LayoutGrid,
+    Globe,
+    BookOpen,
+    Heart,
+    Laugh,
+    Flame
+} from 'lucide-react';
 import './Feed.css';
 
 const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChange, onSortChange, sortOption, searchQuery = '' }) => {
     const [isSortOpen, setIsSortOpen] = useState(false);
     const q = searchQuery.trim();
+
+    const getCategoryIcon = (category, isActive) => {
+        if (isActive) {
+            switch (category) {
+                case 'All': return <LayoutGrid size={16} color="#fff" />;
+                case 'General': return <Globe size={16} color="#fff" />;
+                case 'Study': return <BookOpen size={16} color="#fff" />;
+                case 'Crush': return <Heart size={16} color="#fff" fill="#fff" />;
+                case 'Funny': return <Laugh size={16} color="#fff" />;
+                case 'Rant': return <Flame size={16} color="#fff" />;
+                default: return <Globe size={16} color="#fff" />;
+            }
+        }
+
+        switch (category) {
+            case 'All': return <LayoutGrid size={16} color="#64748b" />;
+            case 'General': return <Globe size={16} color="#6366f1" />;
+            case 'Study': return <BookOpen size={16} color="#3b82f6" />;
+            case 'Crush': return <Heart size={16} color="#ec4899" fill="#ec4899" />;
+            case 'Funny': return <Laugh size={16} color="#f59e0b" />;
+            case 'Rant': return <Flame size={16} color="#ef4444" />;
+            default: return <Globe size={16} color="#6366f1" />;
+        }
+    };
 
     const filteredConfessions = confessions
         .filter(c => activeCategory === 'All' || c.category === activeCategory)
@@ -42,6 +77,7 @@ const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChan
                                 className={`citation ${activeCategory === cat ? 'active' : ''}`}
                                 onClick={() => onCategoryChange(cat)}
                             >
+                                <span className="cat-icon">{getCategoryIcon(cat, activeCategory === cat)}</span>
                                 {cat}
                             </button>
                         ))}

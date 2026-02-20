@@ -42,7 +42,7 @@ const App = () => {
     return (
       <div className="app-loading">
         <div className="app-loading-spinner" />
-        <p>Loading WhisperWall…</p>
+        <p>Loading SecretDiary…</p>
       </div>
     );
   }

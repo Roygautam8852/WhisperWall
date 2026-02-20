@@ -1,4 +1,4 @@
-# WhisperWall - Anonymous Confession Platform
+# SecretDiary - Anonymous Confession Platform
 
 A production-level MERN stack application for sharing anonymous confessions with reactions and community engagement.
 
@@ -38,7 +38,7 @@ A production-level MERN stack application for sharing anonymous confessions with
 ## 📁 Folder Structure
 
 ```
-whisperwall/
+secretdiary/
 ├── backend/
 │   ├── config/
 │   │   ├── db.js              # MongoDB connection
@@ -105,7 +105,7 @@ whisperwall/
 
 3. **Create .env file** (update with your values)
    ```bash
-   MONGODB_URI=mongodb://localhost:27017/whisperwall
+   MONGODB_URI=mongodb://localhost:27017/secretdiary
    GOOGLE_CLIENT_ID=your_google_client_id
    GOOGLE_CLIENT_SECRET=your_google_client_secret
    GOOGLE_CALLBACK_URL=http://localhost:5000/auth/google/callback

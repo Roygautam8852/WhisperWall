@@ -59,7 +59,7 @@
 .brand-icon {
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 99px;
   background: linear-gradient(135deg, #8b5cf6, #6366f1);
   display: flex;
   align-items: center;
@@ -204,6 +204,7 @@
   color: #6366f1;
   cursor: pointer;
   transition: all 0.25s ease;
+  outline: none;
   position: relative;
 }
 
@@ -402,6 +403,7 @@
   transition: all 0.25s ease;
   white-space: nowrap;
   font-family: inherit;
+  outline: none;
 }
 
 .btn-login:hover {
@@ -427,6 +429,7 @@
   white-space: nowrap;
   box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
   font-family: inherit;
+  outline: none;
 }
 
 .btn-signup:hover {
@@ -592,7 +595,7 @@
   border: none;
   color: #374151;
   font-size: 0.875rem;
-  border-radius: 8px;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;

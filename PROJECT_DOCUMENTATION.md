@@ -1,7 +1,7 @@
-# WhisperWall - Official Project Documentation
+# SecretDiary - Official Project Documentation
 
 ## 1. Project Overview
-**WhisperWall** is a modern, anonymous confession platform designed for campus communities. It allows users to share thoughts, secrets, and "vibe" checks without revealing their true identity, while still maintaining a secure and moderated environment through session-based authentication.
+**SecretDiary** is a modern, anonymous confession platform designed for campus communities. It allows users to share thoughts, secrets, and "vibe" checks without revealing their true identity, while still maintaining a secure and moderated environment through session-based authentication.
 
 ---
 
