@@ -227,8 +227,7 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-    height: 100%;
-    /* Fill grid cell height */
+    height: 400px;
 }
 
 .ph-card:hover {
@@ -270,6 +269,13 @@
     margin: 0 0 1rem;
     white-space: pre-wrap;
     flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.ph-text::-webkit-scrollbar {
+    display: none;
 }
 
 /* Hashtags */
@@ -339,8 +345,43 @@
     flex-wrap: wrap;
 }
 
+.ph-confirm-row.vertical {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.ph-code-input-group {
+    width: 100%;
+}
+
+.ph-code-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.5);
+    outline: none;
+    transition: all 0.2s;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.ph-code-input:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.ph-confirm-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
 .ph-btn-danger {
-    padding: 0.3rem 0.75rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 8px;
     background: #ef4444;
     color: #fff;
@@ -362,7 +403,7 @@
 }
 
 .ph-btn-cancel {
-    padding: 0.3rem 0.75rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 8px;
     background: #f3f4f6;
     color: #374151;
@@ -378,13 +419,13 @@
     background: #e5e7eb;
 }
 
+/* ── Responsive ── */
 @media (max-width: 1024px) {
     .ph-list {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* ── Responsive ── */
 @media (max-width: 640px) {
     .ph-list {
         grid-template-columns: 1fr;

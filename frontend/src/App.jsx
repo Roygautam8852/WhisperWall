@@ -96,7 +96,7 @@ const App = () => {
             searchQuery={searchQuery}
           />
         );
-      case 'profile': return <ProfilePage />;
+      case 'profile': return <ProfilePage onRefresh={() => setRefreshKey(prev => prev + 1)} />;
       case 'trends': return <TrendsPage />;
       case 'chats': return <ChatsPage />;
       default: return null;

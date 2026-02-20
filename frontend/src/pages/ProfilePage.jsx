@@ -22,13 +22,14 @@ const formatDate = (iso) => {
     return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 };
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
     const { user } = useContext(AuthContext);
 
     const [confessions, setConfessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [deleteId, setDeleteId] = useState(null); // confirmation target
+    const [inputSecretCode, setInputSecretCode] = useState('');
     const [deleting, setDeleting] = useState(false);
 
     // ── Fetch user's confessions ─────────────────────────────
@@ -50,17 +51,28 @@ const ProfilePage = () => {
 
     // ── Delete handler ───────────────────────────────────────
     const handleDelete = async (id) => {
+        if (!inputSecretCode) {
+            alert("Please enter the secret code you set for this confession.");
+            return;
+        }
+
         setDeleting(true);
         try {
-            // Secret code is hashed server-side already; for owner-delete we skip secret code check
-            // The backend requires it, so we use a workaround: backend already checks userId ownership
-            await confessionService.delete(id, 'OWNER_DELETE');
+            // Send the actual secret code collected from user
+            await confessionService.delete(id, inputSecretCode);
+
+            // Only update UI if server confirms success
             setConfessions(prev => prev.filter(c => c._id !== id));
             setDeleteId(null);
+            setInputSecretCode('');
+
+            // Trigger global refresh so Feed is updated too
+            if (props.onRefresh) props.onRefresh();
+
+            alert("Confession deleted successfully.");
         } catch (err) {
-            // If backend requires secret code, just remove from UI gracefully
-            setConfessions(prev => prev.filter(c => c._id !== id));
-            setDeleteId(null);
+            const msg = err.response?.data?.error || "Incorrect secret code or server error.";
+            alert(msg);
         } finally {
             setDeleting(false);
         }
@@ -181,22 +193,36 @@ const ProfilePage = () => {
 
                                     {/* Delete */}
                                     {deleteId === c._id ? (
-                                        <div className="ph-confirm-row">
-                                            <span>Delete this secret?</span>
-                                            <button
-                                                className="ph-btn-danger"
-                                                onClick={() => handleDelete(c._id)}
-                                                disabled={deleting}
-                                            >
-                                                {deleting ? 'Deleting…' : 'Yes, Delete'}
-                                            </button>
-                                            <button
-                                                className="ph-btn-cancel"
-                                                onClick={() => setDeleteId(null)}
-                                                disabled={deleting}
-                                            >
-                                                Cancel
-                                            </button>
+                                        <div className="ph-confirm-row vertical">
+                                            <div className="ph-code-input-group">
+                                                <input
+                                                    type="password"
+                                                    placeholder="Enter Secret Code"
+                                                    className="ph-code-input"
+                                                    value={inputSecretCode}
+                                                    onChange={(e) => setInputSecretCode(e.target.value)}
+                                                    maxLength={8}
+                                                />
+                                            </div>
+                                            <div className="ph-confirm-actions">
+                                                <button
+                                                    className="ph-btn-danger"
+                                                    onClick={() => handleDelete(c._id)}
+                                                    disabled={deleting}
+                                                >
+                                                    {deleting ? 'Deleting…' : 'Confirm Delete'}
+                                                </button>
+                                                <button
+                                                    className="ph-btn-cancel"
+                                                    onClick={() => {
+                                                        setDeleteId(null);
+                                                        setInputSecretCode('');
+                                                    }}
+                                                    disabled={deleting}
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
                                         </div>
                                     ) : (
                                         <button
