@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
 const connectDB = require('./config/db');
 require('./config/passport');
 
@@ -44,9 +45,9 @@ app.use(
     proxy: true, // Required for Render/Trust Proxy
     cookie: {
       httpOnly: true,
-      secure: true, // Must be true for sameSite: 'none'
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      sameSite: 'none', // Required for cross-domain cookies
+      sameSite: 'lax', // Back to lax since same domain
     },
   })
 );
@@ -56,13 +57,28 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use('/auth', authRoutes);
-app.use('/confessions', confessionRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/confessions', confessionRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' });
 });
+
+// Serve Frontend Static Files (Production)
+if (process.env.NODE_ENV === 'production') {
+  const frontendPath = path.join(__dirname, '../frontend/dist');
+  app.use(express.static(frontendPath));
+
+  // Catch-all route to serve index.html for React Router
+  app.get('*', (req, res, next) => {
+    // If request is for an API route, don't serve index.html
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  });
+}
 
 // 404 handler
 app.use((req, res) => {
